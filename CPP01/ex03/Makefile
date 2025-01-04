@@ -6,11 +6,11 @@
 #    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/12 17:59:47 by kbrauer           #+#    #+#              #
-#    Updated: 2024/10/12 18:45:15 by kbrauer          ###   ########.fr        #
+#    Updated: 2025/01/04 17:27:22 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Brain
+NAME = Violence
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
