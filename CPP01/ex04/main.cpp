@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:51:37 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/01/04 18:57:01 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/01/09 19:48:05 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int main(int argc, char** argv){
 	
+	if (argc != 4)
+		return (std::cout << "Wrong number of arguments!" << std::endl, 1);
 	Sed sed(argv[1]);
+	sed.replaceStr(argv[2], argv[3]);
 	return 0;
 }
 

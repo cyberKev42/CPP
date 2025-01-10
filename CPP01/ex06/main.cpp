@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sed.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 18:19:22 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/01/10 13:29:19 by kbrauer          ###   ########.fr       */
+/*   Created: 2025/01/10 16:03:14 by kbrauer           #+#    #+#             */
+/*   Updated: 2025/01/10 17:19:07 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SED_HPP
-#define SED_HPP
+#include "Harl.hpp"
 
-#include <string>
-#include <fstream>
-#include <iostream>
-
-class Sed {
-private:
-	std::string _inputFile;
-	std::string _outputFile;
-public:
-	Sed(std::string filename);
-	~Sed();
-	int replaceStr (std::string str1, std::string str2) const;
-};
-
-#endif
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+		return (std::cout << "One argument needed, not more or less!" << std::endl, 1);
+	Harl harl;
+	harl.complain(argv[1]);	
+	return 0;
+}
