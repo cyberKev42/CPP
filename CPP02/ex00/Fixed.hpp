@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 16:14:28 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/01/11 15:53:18 by kbrauer          ###   ########.fr       */
+/*   Created: 2025/01/11 13:37:41 by kbrauer           #+#    #+#             */
+/*   Updated: 2025/01/11 16:46:52 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-#include <string>
 #include <iostream>
+#include <string>
 
-class Zombie {
-	private:
-		std::string name;
-	public:
-		Zombie();
-		Zombie(std::string name);
-		~Zombie();
-		void announce(void);		
-		Zombie* zombieHorde(int N, std::string name);
+class Fixed{
+private:
+	int 				_n;
+	static const int 	_f = 8;
+public:
+	Fixed();							// Default constructor
+	Fixed(Fixed& original);				// Copy constructor
+	Fixed& operator=(const Fixed& N);	// Copy assignment operator
+	~Fixed();							// Destructor
+	int getRawBits( void ) const;
+	void setRawBits( int const raw );
 };
 
 #endif

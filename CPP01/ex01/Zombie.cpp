@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 16:14:29 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/01/03 15:35:58 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/01/11 15:53:13 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ Zombie::~Zombie(){
 void Zombie::announce(){
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
-
-// std::string Zombie::getName(){
-// 	return name;
-// }
 
 Zombie* Zombie::zombieHorde(int N, std::string name){
 	Zombie* horde = new Zombie[N];

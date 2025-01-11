@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 17:30:53 by kbrauer           #+#    #+#             */
-/*   Updated: 2024/10/12 17:56:59 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/01/11 18:38:14 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ std::string *stringPTR = &var;
 std::string &stringREF = var;
 
 std::cout << &var << std::endl;
-std::cout << &stringPTR << std::endl;
+std::cout << stringPTR << std::endl;
 std::cout << &stringREF << std::endl;
 
 std::cout << var << std::endl;
 std::cout << *stringPTR << std::endl;
 std::cout << stringREF << std::endl;
 
-	
 }
 
 // Write a program that contains:
