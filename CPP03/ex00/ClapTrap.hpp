@@ -11,6 +11,7 @@ private:
     int             _ep;
     int             _atk;
 public:
+	ClapTrap();
     ClapTrap(std::string name);
     ClapTrap(ClapTrap& original);
     ~ClapTrap();
