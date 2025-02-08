@@ -6,7 +6,7 @@
 /*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:51:55 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/01/18 20:12:09 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/08 13:22:33 by kevin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@ Fixed::Fixed() {
 }
 Fixed::Fixed(const int int_n) {
 	std::cout << "Int constructor called" << std::endl;
-    this->_n = int_n * (int)(pow(2, this->_f));
+	if (int_n <= 8388607 && int_n >= -8388608)
+    	this->_n = int_n * (int)(pow(2, this->_f));
+	else {
+		this->_n = 0;
+		std::cout << "Int overflow -> Int set to zero" << std::endl;
+	}
+		
 }
 Fixed::Fixed(const float float_n) {
 	std::cout << "Float constructor called" << std::endl;

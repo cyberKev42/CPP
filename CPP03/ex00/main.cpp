@@ -7,6 +7,10 @@ int main() {
 
     C1.attack("Hank");
     C1.takeDamage(4);
+    C1.takeDamage(4);
+    C1.takeDamage(4);
+    C1.beRepaired(2);
+    C1.beRepaired(2);
     C1.beRepaired(2);
 
 	C2.attack("Larry");

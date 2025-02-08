@@ -6,7 +6,7 @@
 /*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:03:35 by kevin             #+#    #+#             */
-/*   Updated: 2025/01/19 20:04:08 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/08 13:55:34 by kevin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ Fixed Fixed::operator*(const Fixed& N) {
 
 Fixed Fixed::operator/(const Fixed& N) {
     Fixed tmp;
-    tmp._n = (this->_n / N._n) / pow(2, this->_f);
+    tmp._n = (this->_n / N._n) * pow(2, this->_f);
     return tmp;
 }
 
