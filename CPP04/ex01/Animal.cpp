@@ -6,7 +6,7 @@
 /*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:16:45 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/08 16:46:10 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/08 18:12:41 by kevin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,8 @@ void Animal::makeSound() const {
 
 std::string Animal::getType(void) const {
     return this->_type;
+}
+
+void Animal::setType(std::string type) {
+    this->_type = type;
 }

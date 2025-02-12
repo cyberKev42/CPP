@@ -6,7 +6,7 @@
 /*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:32:53 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/08 15:55:03 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/08 16:05:43 by kevin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ FragTrap::FragTrap(FragTrap& original) {
 FragTrap::~FragTrap() {
     std::cout << "FragTraps destructor called" << std::endl;
 }
-FragTrap& FragTrap::operator=(const FragTrap& S) {
-    if (this != &S) {
-        _name = S._name;
-        _hp = S._hp;
-        _ep = S._ep;
-        _atk = S._atk;
+FragTrap& FragTrap::operator=(const FragTrap& F) {
+    if (this != &F) {
+        _name = F._name;
+        _hp = F._hp;
+        _ep = F._ep;
+        _atk = F._atk;
     }
     return *this;
 }

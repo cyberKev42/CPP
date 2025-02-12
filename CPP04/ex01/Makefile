@@ -6,15 +6,15 @@
 #    By: kevin <kevin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/08 16:15:53 by kevin             #+#    #+#              #
-#    Updated: 2025/02/08 16:59:42 by kevin            ###   ########.fr        #
+#    Updated: 2025/02/08 17:43:29 by kevin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Animals
+NAME = Brain
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
