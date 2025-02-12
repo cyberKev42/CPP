@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:03:35 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/08 13:55:34 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/12 18:01:12 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ Fixed::Fixed() {
 	this->setRawBits(0);
 }
 Fixed::Fixed(const int int_n) {
-    this->_n = int_n * (int)(pow(2, this->_f));
+	if (int_n <= 8388607 && int_n >= -8388608)
+    	this->_n = int_n * (int)(pow(2, this->_f));
+	else {
+		this->_n = 0;
+		std::cout << "Int overflow -> Int set to zero" << std::endl;
+	}
 }
 Fixed::Fixed(const float float_n) {
     this->_n = roundf(float_n * (pow(2, this->_f)));

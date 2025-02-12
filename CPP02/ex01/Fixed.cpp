@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:51:55 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/02/08 13:22:33 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/12 17:58:31 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ Fixed::Fixed(const int int_n) {
 		this->_n = 0;
 		std::cout << "Int overflow -> Int set to zero" << std::endl;
 	}
-		
 }
 Fixed::Fixed(const float float_n) {
 	std::cout << "Float constructor called" << std::endl;
@@ -46,7 +45,6 @@ Fixed::~Fixed() {
 }
 
 float Fixed::toFloat( void ) const {
-	
     return (_n / pow(2, this->_f));
 }
 
