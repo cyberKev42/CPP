@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:32:53 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/08 16:05:43 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/13 17:19:34 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ FragTrap& FragTrap::operator=(const FragTrap& F) {
         _atk = F._atk;
     }
     return *this;
-}
-
-void FragTrap::guardGate() {
-    std::cout << "FragTrap is now in Gate keeper mode" << std::endl;
 }
 
 void FragTrap::attack(const std::string& target) {

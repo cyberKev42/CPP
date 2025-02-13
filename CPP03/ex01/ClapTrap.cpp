@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:49:21 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/02/08 15:25:24 by kevin            ###   ########.fr       */
+/*   Updated: 2025/02/13 17:02:13 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ClapTrap::ClapTrap() {
     std::cout << "ClapTraps default constructor called" << std::endl;
     this->_name = "";
-    this->_hp = 66;
+    this->_hp = 10;
     this->_ep = 10;
     this->_atk = 0;
 }
