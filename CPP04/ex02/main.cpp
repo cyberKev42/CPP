@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:16:29 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/14 15:42:58 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/02/14 17:54:27 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@
 int main()
 {
 	
-    std::cout << "Construction" << std::endl << std::endl;
+	// Animal 	ani;
+	Cat		cat;
+	
+    std::cout << std::endl << "Construction" << std::endl << std::endl;
 	
     const Animal* j = new Dog();
     const Animal* i = new Cat();
