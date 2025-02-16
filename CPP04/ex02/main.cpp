@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:16:29 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/14 17:54:27 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:42:33 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,14 @@ int main()
 	
 	delete l;
 	delete k;
+
+
+	std::cout << std::endl << "Deep copy test" << std::endl << std::endl;
+
+	Dog m;
+	{
+		Dog p = m;
+	}
     
     return 0;
 }

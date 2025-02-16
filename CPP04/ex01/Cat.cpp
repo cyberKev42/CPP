@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:18:49 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/14 15:39:19 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:37:42 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ Cat::Cat() {
 }
 Cat::Cat(Cat& original) {
     std::cout << "Cat copy constructor called" << std::endl;
-    this->_type = original.getType(); //MAKE SURE IT IS A DEEP COPY
-    this->_b = new Brain();
+    this->_type = original.getType();
+    this->_b = new Brain(*original._b);
 }
 Cat::~Cat() {
     delete this->_b;
@@ -30,7 +30,8 @@ Cat& Cat::operator=(const Cat& C) {
     std::cout << "Cat copy assignment operator called" << std::endl;
     if (this != &C) {
         this->_type = C._type;
-        this->_b = C._b;
+        delete this->_b;
+		this->_b = new Brain(*C._b);
     }
     return *this;
 }
