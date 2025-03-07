@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:46 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/01 15:55:54 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:52:21 by kevin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
 
 class ScalarConverter {
 private:
@@ -38,3 +39,23 @@ public:
 };
 
 #endif
+
+/*
+./convert 0
+char: Non displayable
+int: 0
+float: 0.0f
+double: 0.0
+
+./convert nan
+char: impossible
+int: impossible
+float: nanf
+double: nan
+
+./convert 42.0f
+char: '*'
+int: 42
+float: 42.0f
+double: 42.0
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:44 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/01 18:04:34 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/07 22:17:36 by kevin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,69 +25,93 @@ void ScalarConverter::convert(std::string str) {
 	int		i = 0;
 	bool	comma = false;
 	bool	floaty = false;
-	if (str.length() > 1 && ((str[i] > 'A' && str[i] < 'Z') || (str[i] > 'a' && str[i] < 'z')))
+	std::string dezimal = "";
+	if ((str.length() > 1 && ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')))
+		|| (str.length() == 1 && !((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')
+		|| (str[i] >= '0' && str[i] <= '9'))))
 	{
-		std::cout 	<< "1" << str << std::endl;
+		std::cout 	<< "1: " << str << std::endl;
 		throw InvalidInput();
 	}
 	if (str[i] == '+' || str[i] == '-')
 		sign = 1;
 	while (str[i + sign]) {
+		if (floaty)
+			throw InvalidInput();
 		if (i == 0 && str.length() > 1 && (str[i + sign] < '0' || str[i + sign] > '9'))
 		{
-			std::cout 	<< "2" << str << std::endl;	
+			std::cout 	<< "2: " << str << std::endl;	
 			throw InvalidInput();
 		}
-		if (((((str[i + sign] > 'a' && str[i + sign] < 'z') && str[i + sign] != 'f') && str[i + sign] != '.'
-				&& (str[i + sign] < '0' || str[i + sign] > '9')) || (str[i] == '.' && comma) || (str[i] == 'f' && floaty)
-				|| (str[i] > 'A' && str[i] < 'Z')) && str.length() > 1)
+		if (((((str[i + sign] >= 'a' && str[i + sign] <= 'z') && str[i + sign] != 'f') && str[i + sign] != '.'
+				&& (str[i + sign] < '0' || str[i + sign] > '9')) || (str[i + sign] == '.' && comma)
+				|| (str[i + sign] >= 'A' && str[i + sign] <= 'Z')) && str.length() > 1 )
 		{
-			std::cout 	<< "3" << str << std::endl;
+			std::cout 	<< "3: " << str << std::endl;
 			throw InvalidInput();
 		}
-		if (str[i] == '.')
-			comma = true;
-		if (str[i] == 'f')
+		if (str[i + sign] == 'f')
 			floaty = true;
+		if (comma && (str[i + sign] <= '9' && str[i + sign] >= '1'))
+			dezimal = "";
+		if (str[i + sign] == '.') {
+			comma = true;
+			dezimal = ".0";
+		}
 		i++;
 	}
 	
 	
-
-	if (floaty) {
-		float number = stof(str);
-		std::cout 	<< "char: " << "Non displayable" << std::endl     // CONVERT number to CHAR
-					// << "int: " << (int)str[0] << std::endl    CONVERT number to INT
-					<< "float: " << number << "f" << std::endl
-					// << "double: " << (double)str[0] << ".0" << std::endl;    CONVERT number to DOUBLE
-		
+	float 	number_f;
+	int		number_i;
+	char	number_c;
+	double	number_d;
+	if (floaty) { 					// string is a float
+		if (!comma)
+			dezimal = ".0";
+		number_f = stof(str);
+		number_i = number_f;
+		number_c = number_f;
+		number_d = number_f;
 	}
-	else if
-		(comma)
-		double number = stod(str);
+	else if (comma) { 				// string is a double
+		number_d = atof(str.c_str());
+		number_f = static_cast<float>(number_d);
+		number_i = static_cast<int>(number_d);
+		number_c = static_cast<int>(number_d);
+
+		std::cout 	<< number_d << " number_d" << std::endl;
+		// NOT enough decimal points, should hold up to 15
+	}
+	else if ((str[0] >= 'A' && str[0] <= 'Z') || (str[0] >= 'a' && str[0] <= 'z')) { 	// string is a char
+		dezimal = ".0";
+		number_c = str[0];
+		number_i = number_c;
+		number_f = number_c;
+		number_d = number_c;
+	}
+	else {							// string is an int
+		
+		number_i = stoi(str);
+		number_c = number_i;
+		number_f = number_i;
+		number_d = number_i;
+	}
+	int len;
+	if (str.length() > 17)
+		len = 17;
 	else
-		int number = stoi(str);
+		len = str.length() - 2 - sign;
+	std::cout 	<< len << std::endl;
+	if (number_i < 32 || number_i > 126)
+		std::cout 	<< "char: Non displayable" << std::endl;
+	else
+		std::cout 	<< "char: '" << number_c << "'" << std::endl;
+	std::cout	<< "int: " << number_i << std::endl
+				<< "float: " << std::setprecision(len) << number_f << dezimal << "f" << std::endl
+				<< "double: " << std::setprecision(len) << number_d << dezimal << std::endl;
 
 
-/*
-
-
-	
-	if (str.length() == 1 && (str[i + sign] < '0' || str[i + sign] > '9')) {
-	}
-	else if (floaty) {
-		std::cout 	<< "char: " << '0' + stoi(str) << std::endl
-					<< "int: " << stoi(str.substr(0, str.length() - 1)) << std::endl
-					<< "float: " << str << std::endl
-					<< "double: " << stod(str.substr(0, str.length() - 1)) << std::endl;
-	}
-	else if (comma) {
-		
-	}
-	
-	
-	
-*/
 
 
 	std::cout << "---Correct Input---" << std::endl;
