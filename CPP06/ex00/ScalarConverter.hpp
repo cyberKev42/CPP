@@ -6,7 +6,7 @@
 /*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:46 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/07 20:52:21 by kevin            ###   ########.fr       */
+/*   Updated: 2025/03/13 17:23:38 by kevin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <climits>
+#include <limits>
+#include <cmath>
 
 class ScalarConverter {
 private:
