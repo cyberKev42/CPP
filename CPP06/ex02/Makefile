@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kevin <kevin@student.42.fr>                +#+  +:+       +#+         #
+#    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 19:03:52 by kevin             #+#    #+#              #
-#    Updated: 2025/03/14 22:11:11 by kevin            ###   ########.fr        #
+#    Updated: 2025/03/20 13:39:09 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = identify
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Base.cpp A.cpp B.cpp C.cpp 
+SRCS = main.cpp Base.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

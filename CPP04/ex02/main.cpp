@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:16:29 by kevin             #+#    #+#             */
-/*   Updated: 2025/02/16 20:20:58 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/02/18 18:58:00 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main()
 {
 	
 	// Animal 	ani;
-	Cat		cat;
+	// Cat		cat;
 	
     std::cout << std::endl << "Construction" << std::endl << std::endl;
 	

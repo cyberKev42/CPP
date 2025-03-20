@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:44 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/14 18:20:46 by kevin            ###   ########.fr       */
+/*   Updated: 2025/03/20 13:33:32 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,31 @@ static void typeInt(std::string str, std::string dezimal) {
 				<< "double: " 	<< std::setprecision(10) << number_d << dezimal 			<< std::endl;
 }
 
+static int precision(std::string str, int marker) {
+	bool comma = false;
+	int  n = 0;
+	
+	for (int i = 0; i < str.length(); i++) {
+		if (comma && str[i] != 'f')
+			n++;
+		if (str[i] == '.')
+			comma = true;
+	}
+	switch (marker) {
+		case 0:
+			if (n > 6)
+				n = 6;
+			break;
+		case 1:
+			if (n > 15)
+				n = 15;
+			break;
+		default:
+			n = 1;
+	}
+	return n;
+}
+
 static void typeFloat(std::string str, std::string dezimal) {
 	float	number_f = atof(str.c_str());
 	int		number_i = static_cast<int>(number_f);
@@ -64,24 +89,14 @@ static void typeFloat(std::string str, std::string dezimal) {
 	if (number_f == -std::numeric_limits<float>::infinity()
 		|| number_f == std::numeric_limits<float>::infinity()
 		|| number_f != number_f
-		|| (static_cast<double>(atof(tmp.c_str())) < INT_MIN || static_cast<double>(atof(tmp.c_str())) > INT_MAX))
+		|| (atol(tmp.c_str()) < INT_MIN || (atol(tmp.c_str()) > INT_MAX)))
 		std::cout	<< "int: Impossible" 					<< std::endl;
 	else
 		std::cout	<< "int: " 		<< number_i 					<< std::endl;
 	if (number_f == std::numeric_limits<float>::infinity())
 		infinity_sign = "+";
-	std::cout << number_i << std::endl << std::fixed << std::setprecision(38) << number_f << std::endl;
-	if (number_i < number_f)
-		std::cout << "wtf" << std::endl;
-	if (number_i == number_f)
-		std::cout	<< "float: " 	<< std::fixed << std::setprecision(1) << infinity_sign << number_f 	<< "f" 	<< std::endl;
-	else
-		std::cout	<< "float: " 	<< std::fixed << std::setprecision(7) << infinity_sign << number_f 	<< "f" 	<< std::endl;
-	if (number_i == number_d)
-		std::cout	<< "double: " 	<< std::setprecision(1) << infinity_sign << number_d 			<< std::endl;
-	else
-		std::cout	<< "double: " 	<< std::setprecision(15) << infinity_sign << number_d 			<< std::endl;
-}
+	std::cout	<< "float: " 	<< std::fixed << std::setprecision(6) << infinity_sign << number_f 	<< "f" 	<< std::endl;
+	std::cout	<< "double: " 	<< std::setprecision(precision(str, 1)) << infinity_sign << number_d 			<< std::endl;}
 
 static void typeDouble(std::string str, std::string dezimal) {
 	double	number_d = atof(str.c_str());
@@ -104,14 +119,8 @@ static void typeDouble(std::string str, std::string dezimal) {
 		std::cout	<< "int: " 		<< number_i 					<< std::endl;
 	if (number_d == std::numeric_limits<double>::infinity())
 		infinity_sign = "+";
-	if (number_i == number_f)
-		std::cout	<< "float: " 	<< std::fixed << std::setprecision(1) << infinity_sign << number_f 	<< "f" 	<< std::endl;
-	else
-		std::cout	<< "float: " 	<< std::fixed << std::setprecision(7) << infinity_sign << number_f 	<< "f" 	<< std::endl;
-	if (number_i == number_d)
-		std::cout	<< "double: " 	<< std::setprecision(1) << infinity_sign << number_d 			<< std::endl;
-	else
-		std::cout	<< "double: " 	<< std::setprecision(15) << infinity_sign << number_d 			<< std::endl;
+	std::cout	<< "float: " 	<< std::fixed << std::setprecision(precision(str, 0)) << infinity_sign << number_f 	<< "f" 	<< std::endl;
+	std::cout	<< "double: " 	<< std::setprecision(precision(str, 1)) << infinity_sign << number_d 			<< std::endl;
 }
 
 static void typePseudo(std::string str) {
