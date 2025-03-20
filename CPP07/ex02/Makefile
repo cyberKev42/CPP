@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kevin <kevin@student.42.fr>                +#+  +:+       +#+         #
+#    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/15 16:23:10 by kevin             #+#    #+#              #
-#    Updated: 2025/03/15 20:19:02 by kevin            ###   ########.fr        #
+#    Updated: 2025/03/20 19:05:49 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = array
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -g -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Array.cpp
+SRCS = main1.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
 
