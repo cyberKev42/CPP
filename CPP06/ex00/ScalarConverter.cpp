@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:44 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/20 13:33:32 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/20 15:12:03 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ ScalarConverter::~ScalarConverter() {}
 
 static void typeChar(char c, std::string dezimal) {
 	char	number_c = c;
-	int		number_i = number_c;
-	float	number_f = number_c;
-	double	number_d = number_c;
+	int		number_i = static_cast<int>(number_c);
+	float	number_f = static_cast<float>(number_c);
+	double	number_d = static_cast<double>(number_c);
 
 	std::cout 	<< "char: '" 	<< number_c 			<< "'" 	<< std::endl
 				<< "int: " 		<< number_i 					<< std::endl
@@ -32,15 +32,10 @@ static void typeChar(char c, std::string dezimal) {
 }
 
 static void typeInt(std::string str, std::string dezimal) {
-	
-	int		number_i;
-	char	number_c;
-	float	number_f;
-	double	number_d;
-	number_i = atoi(str.c_str());
-	number_c = number_i;
-	number_f = static_cast<float>(number_i);
-	number_d = static_cast<double>(number_i);
+	int number_i = atoi(str.c_str());
+	char number_c = static_cast<char>(number_i);
+	float number_f = static_cast<float>(number_i);
+	double number_d = static_cast<double>(number_i);
 	if (number_i < 32 || number_i > 126)
 		std::cout 	<< "char: Non displayable" << std::endl;
 	else
@@ -89,13 +84,13 @@ static void typeFloat(std::string str, std::string dezimal) {
 	if (number_f == -std::numeric_limits<float>::infinity()
 		|| number_f == std::numeric_limits<float>::infinity()
 		|| number_f != number_f
-		|| (atol(tmp.c_str()) < INT_MIN || (atol(tmp.c_str()) > INT_MAX)))
+		|| (number_f < INT_MIN || (atol(tmp.c_str()) > 2147483583)))
 		std::cout	<< "int: Impossible" 					<< std::endl;
 	else
 		std::cout	<< "int: " 		<< number_i 					<< std::endl;
 	if (number_f == std::numeric_limits<float>::infinity())
 		infinity_sign = "+";
-	std::cout	<< "float: " 	<< std::fixed << std::setprecision(6) << infinity_sign << number_f 	<< "f" 	<< std::endl;
+	std::cout	<< "float: " 	<< std::fixed << std::setprecision(precision(str, 0)) << infinity_sign << number_f 	<< "f" 	<< std::endl;
 	std::cout	<< "double: " 	<< std::setprecision(precision(str, 1)) << infinity_sign << number_d 			<< std::endl;}
 
 static void typeDouble(std::string str, std::string dezimal) {
@@ -141,9 +136,10 @@ void ScalarConverter::convert(std::string str) {
 		return;
 	}
 	if ((str.length() > 1 && ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')))
-		|| (str.length() == 1 && !((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')
-		|| (str[i] >= '0' && str[i] <= '9'))))
+		|| (str.length() == 1 && (str[i] > 126 && str[i] < 32)))
 		throw InvalidInput();
+	if (str.length() == 1)
+		goto label1;
 	if (str[i] == '+' || str[i] == '-')
 		sign = 1;
 	while (str[i + sign]) {
@@ -167,7 +163,7 @@ void ScalarConverter::convert(std::string str) {
 	}
 	if (floaty && !comma)
 		throw InvalidInput();
-	
+	label1:
 	if (floaty) { 					// string is a float
 		typeFloat(str, dezimal);
 		return;
@@ -176,7 +172,7 @@ void ScalarConverter::convert(std::string str) {
 		typeDouble(str, dezimal);
 		return;
 	}
-	else if ((str[0] >= 'A' && str[0] <= 'Z') || (str[0] >= 'a' && str[0] <= 'z')) { 	// string is a char
+	else if (!(str[0] <= '9' && str[0] >= '0') && (str[0] <= 126 && str[0] >= 32) && str.length() == 1) { 	// string is a char
 		dezimal = ".0";
 		typeChar(str[0], dezimal);
 		return;
