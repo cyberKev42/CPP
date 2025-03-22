@@ -6,11 +6,11 @@
 #    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/15 16:23:10 by kevin             #+#    #+#              #
-#    Updated: 2025/03/21 13:29:01 by kbrauer          ###   ########.fr        #
+#    Updated: 2025/03/21 16:08:36 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = array
+NAME = easy
 
 FLAGS = -Wall -Wextra -Werror -std=c++98 
 

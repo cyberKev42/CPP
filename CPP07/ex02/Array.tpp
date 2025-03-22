@@ -6,14 +6,14 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 20:02:16 by kevin             #+#    #+#             */
-/*   Updated: 2025/03/21 12:31:13 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/21 13:31:00 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
 template<class T> Array<T>::Array() {
-    this->arr = nullptr;
+    this->arr = NULL;
 	this->_size = 0;
 }
 template<class T> Array<T>::Array(unsigned int n) {

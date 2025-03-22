@@ -6,14 +6,13 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 19:51:22 by kevin             #+#    #+#             */
-/*   Updated: 2025/03/20 19:05:15 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/21 16:21:42 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-#include <string>
 #include <iostream>
 
 template<class T> class Array {
@@ -33,7 +32,7 @@ template<class T> class Array {
 		
 		class InvalidIndex : public std::exception {
 		public:
-			const char* what() const noexcept override {
+			const char* what() const throw() {
 				return "Index is out of bound";
 			}
 		};

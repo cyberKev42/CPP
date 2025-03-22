@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:46 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/20 12:23:43 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:33:20 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ private:
 public:
 	static void convert(std::string number);
 	class NoInteger : public std::exception {
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Cant convert to Int!";
 		}
 	};
 	class InvalidInput : public std::exception {
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Invalid Input!";
 		}
 	};

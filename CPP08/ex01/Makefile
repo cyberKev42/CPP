@@ -6,15 +6,15 @@
 #    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/15 16:23:10 by kevin             #+#    #+#              #
-#    Updated: 2025/03/21 13:29:01 by kbrauer          ###   ########.fr        #
+#    Updated: 2025/03/22 16:48:46 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = array
+NAME = span
 
 FLAGS = -Wall -Wextra -Werror -std=c++98 
 
-SRCS = main.cpp 
+SRCS = main.cpp Span.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

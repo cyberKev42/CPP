@@ -5,25 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 19:11:49 by kevin             #+#    #+#             */
-/*   Updated: 2025/03/21 16:55:23 by kbrauer          ###   ########.fr       */
+/*   Created: 2025/03/21 13:39:42 by kbrauer           #+#    #+#             */
+/*   Updated: 2025/03/22 14:16:59 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "iter.hpp"
+#include "easyfind.hpp"
+#include <array>
+#include <vector>
+#include <set>
 
 int main() {
-    int arr[5] = {1, 5, 3, 8, 41};
-    iter(arr, 5, myFunc);
 
-    std::cout  << std::endl;
+	std::array<int, 5> arr = {1,2,3,4,5};
+	std::cout << easyfind(arr, 5) << std::endl;
+	std::cout << easyfind(arr, 6) << std::endl << std::endl;
 	
-    std::string arr_2[3] = {"This", "is", "line 3"};
-    iter(arr_2, 3, myFunc);
+	std::vector<int> arr_1 = {1,2,3,4,5};
+	std::cout << easyfind(arr_1, 5) << std::endl;
+	std::cout << easyfind(arr_1, 6) << std::endl << std::endl;
+	
+	std::set<int> arr_2 = {1,2,3,4,5};
+	std::cout << easyfind(arr_2, 5) << std::endl;
+	std::cout << easyfind(arr_2, 6) << std::endl;
 
-    std::cout  << std::endl;
-	
-    float arr_3[7] = {66.6f, 100.0f, 2.5f, 9.98f, 0.0f, 42.42f, 7.0f};
-    iter(arr_3, 7, myFunc);
 }

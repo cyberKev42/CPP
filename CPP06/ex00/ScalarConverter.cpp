@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:44 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/20 15:12:03 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:37:16 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static int precision(std::string str, int marker) {
 		default:
 			n = 1;
 	}
+	if (n == 0)
+		return 1;
 	return n;
 }
 
