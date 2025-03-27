@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:40:06 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/27 13:24:22 by kbrauer          ###   ########.fr       */
+/*   Created: 2025/03/27 16:37:10 by kbrauer           #+#    #+#             */
+/*   Updated: 2025/03/27 18:30:49 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-#define EASYFIND_HPP
+#ifndef MUTANTSTACK_HPP
+#define MUTANTStACK_HPP
 
 #include <iostream>
-#include <algorithm>
+#include <list>
+#include <stack>
 
-template<typename T> int easyfind(T& first, int second) {
-	if (std::find(first.begin(), first.end(), second) != first.end())
-		return (std::cout << "Found" << std::endl, 0);
-	else
-		return (std::cout << "Not found" << std::endl, 1);
-}
+template<class T> class MutantStack : public std::stack<T> {
+	private:
+	public:
+		MutantStack();
+		MutantStack(MutantStack& original);
+		MutantStack& operator=(const MutantStack& M);
+		~MutantStack();
+		typedef typename std::deque<T>::iterator iterator;
+		iterator begin();
+		iterator end();
+};
 
+#include "MutantStack.tpp"
 #endif
