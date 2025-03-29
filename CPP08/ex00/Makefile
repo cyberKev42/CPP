@@ -6,13 +6,13 @@
 #    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/15 16:23:10 by kevin             #+#    #+#              #
-#    Updated: 2025/03/21 16:08:36 by kbrauer          ###   ########.fr        #
+#    Updated: 2025/03/29 16:47:08 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = easy
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 
+FLAGS = -g -Wall -Wextra -Werror -std=c++98 
 
 SRCS = main.cpp 
 
@@ -20,7 +20,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-.c.o:
+.cpp.o:
 	c++ $(FLAGS) -c $< -o $(<:.cpp=.o)
 
 $(NAME): $(OBJS)

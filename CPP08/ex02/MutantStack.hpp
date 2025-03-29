@@ -6,12 +6,12 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:37:10 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/27 18:30:49 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 16:59:59 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MUTANTSTACK_HPP
-#define MUTANTStACK_HPP
+#define MUTANTSTACK_HPP
 
 #include <iostream>
 #include <list>

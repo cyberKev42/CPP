@@ -6,10 +6,11 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:16:30 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/27 18:38:40 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:00:20 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MutantStack.hpp"
 
 template<class T>MutantStack<T>::MutantStack() {};
 template<class T>MutantStack<T>::MutantStack(MutantStack& original) {

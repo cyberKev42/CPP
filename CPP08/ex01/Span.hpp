@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 16:49:05 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/27 15:36:02 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 16:55:27 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ public:
 	void printV();
 	class AlreadyFull : public std::exception {
 		const char* what() const throw() {
-			throw "Container is already full";
+			return "Container is already full";
 		}
 	};
 };

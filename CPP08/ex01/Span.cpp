@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 16:49:01 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/27 15:50:52 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 16:57:37 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Span::Span() : _N(0) {}
 Span::Span(unsigned int N) : _N(N) {}
-Span::Span(const Span& original) : _V(original._V), _N(original._N) {}
+Span::Span(const Span& original) : _N(original._N), _V(original._V) {}
 Span& Span::operator=(const Span& S) {
 	if (this != &S) {
 		this->_N = S._N;
@@ -40,7 +40,7 @@ void Span::addSequence(int* bgn, int* end) {
 }
 
 unsigned int Span::shortestSpan() {
-	int shortest_span = INT8_MAX;
+	int shortest_span = 2147483647;
 	for (std::vector<int>::iterator it = _V.begin(); it != _V.end(); ++it) {
 		for (std::vector<int>::iterator it2 = _V.begin() + 1; it2 != _V.end(); ++it2) {
 			if (it != it2) {
