@@ -6,15 +6,19 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:19:33 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/02/27 19:43:11 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:38:08 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
 
 Intern::Intern() {}
-Intern::Intern(Intern& original) {}
+Intern::Intern(Intern& original) {
+	*this = original;
+}
 Intern& Intern::operator=(const Intern& I) {
+	if (this != &I)
+		return *this;
 	return *this;
 }
 Intern::~Intern() {}

@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:38:27 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/02/27 18:13:09 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:37:13 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 }
 
 void ShrubberyCreationForm::myExe() const {
-	std::ofstream ofile(this->_target + "_shrubbery");
+	std::string str = this->_target + "_shrubbery";
+	std::ofstream ofile(str.c_str());
 	if (ofile.is_open()) {
 		ofile << "        *        " << std::endl;
 		ofile << "        *        " << std::endl;

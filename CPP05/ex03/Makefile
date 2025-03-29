@@ -6,7 +6,7 @@
 #    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/21 12:35:58 by kbrauer           #+#    #+#              #
-#    Updated: 2025/02/27 19:29:55 by kbrauer          ###   ########.fr        #
+#    Updated: 2025/03/29 17:23:58 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-.c.o:
+.cpp.o:
 	c++ $(FLAGS) -c $< -o $(<:.cpp=.o)
 
 $(NAME): $(OBJS)

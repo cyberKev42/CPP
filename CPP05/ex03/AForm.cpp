@@ -41,11 +41,11 @@ bool AForm::getSigned() const {
 	return this->_signed;
 }
 
-const int AForm::getSignGrade() const {
+int AForm::getSignGrade() const {
 	return this->_sign_grade;
 }
 
-const int AForm::getExecGrade() const {
+int AForm::getExecGrade() const {
 	return this->_exec_grade;
 }
 

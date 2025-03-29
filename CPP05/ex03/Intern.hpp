@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:19:35 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/02/27 19:31:23 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:24:45 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	~Intern();
 	AForm* makeForm(std::string formName, std::string targetName);
 	class FormDoesNotExist : public std::exception {
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Error: Form does not exist!";
 		}
 	};

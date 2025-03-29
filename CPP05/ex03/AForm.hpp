@@ -33,23 +33,23 @@ public:
 	virtual ~AForm();
 	const std::string	getName() const;
 	bool				getSigned() const;
-	const int			getSignGrade() const;
-	const int			getExecGrade() const;
+	int			getSignGrade() const;
+	int			getExecGrade() const;
 	void				beSigned(Bureaucrat& B);
 	void 				execute(Bureaucrat const & executor) const;
 	virtual void		myExe() const = 0;
 	class GradeTooHighException : public std::exception {
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Error: Grade too high!";	
 		}
 	};
 	class GradeTooLowException : public std::exception {
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Error: Grade too low!";
 		}
 	};
 	class NotSignedException : public std::exception {
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Error: Form not signed!";
 		}
 	};

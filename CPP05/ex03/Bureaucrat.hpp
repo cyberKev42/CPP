@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:37:26 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/02/27 15:40:29 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:25:00 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ public:
 	void 		executeForm(AForm const & form);
 	class GradeTooHighException : public std::exception {
 	public:
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Error: Grade too high!";
 		} 	
 	};
 	class GradeTooLowException : public std::exception {
 	public:
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Error: Grade too low!";
 		}
 	};
 	class NotSignedException : public std::exception {
-		const char* what() const noexcept override {
+		const char* what() const throw() {
 			return "Error: Form not signed!";
 		}
 	};
