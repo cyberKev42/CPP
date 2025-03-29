@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 21:42:29 by kevin             #+#    #+#             */
-/*   Updated: 2025/03/15 16:16:40 by kevin            ###   ########.fr       */
+/*   Updated: 2025/03/29 17:13:59 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void identify(Base& p) {
     try
     {
         A& a = dynamic_cast<A&>(p);
-        std::cout << "I am A" << std::endl;
+        std::cout << &a << " I am A" << std::endl;
     }
     catch(const std::exception& e)
     {}
@@ -67,7 +67,7 @@ void identify(Base& p) {
     try
     {
         B& b = dynamic_cast<B&>(p);
-        std::cout << "I am B" << std::endl;
+        std::cout << &b << " I am B" << std::endl;
     }
     catch(const std::exception& e)
     {}
@@ -75,7 +75,7 @@ void identify(Base& p) {
     try
     {
         C& c = dynamic_cast<C&>(p);
-        std::cout << "I am C" << std::endl;
+        std::cout << &c << " I am C" << std::endl;
     }
     catch(const std::exception& e)
     {}

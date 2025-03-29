@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 19:04:36 by kevin             #+#    #+#             */
-/*   Updated: 2025/03/14 19:29:59 by kevin            ###   ########.fr       */
+/*   Updated: 2025/03/29 17:16:04 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Serializer {
         Serializer& operator=(const Serializer& S);
         ~Serializer();
     public:
-        static uintptr_t serialize(Data* ptr);
-        static Data* deserialze(uintptr_t raw);
+        static __intptr_t serialize(Data* ptr);
+        static Data* deserialze(__intptr_t raw);
 };
 
 

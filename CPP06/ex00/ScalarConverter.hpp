@@ -6,12 +6,12 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:46 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/21 14:33:20 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:20:08 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
-#define SCALARVONCERTER_HPP
+#define SCALARCONVERTER_HPP
 
 #include <string>
 #include <iostream>

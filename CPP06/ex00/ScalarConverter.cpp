@@ -6,15 +6,19 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:55:44 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/03/21 14:37:16 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/03/29 17:22:36 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
 ScalarConverter::ScalarConverter() {}
-ScalarConverter::ScalarConverter(ScalarConverter& original) {}
+ScalarConverter::ScalarConverter(ScalarConverter& original) {
+	*this = original;
+}
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& S) {
+	if (this != &S)
+		return *this;
 	return *this;
 }
 ScalarConverter::~ScalarConverter() {}
@@ -49,7 +53,7 @@ static int precision(std::string str, int marker) {
 	bool comma = false;
 	int  n = 0;
 	
-	for (int i = 0; i < str.length(); i++) {
+	for (int i = 0; i < static_cast<int>(str.length()); i++) {
 		if (comma && str[i] != 'f')
 			n++;
 		if (str[i] == '.')
@@ -77,6 +81,7 @@ static void typeFloat(std::string str, std::string dezimal) {
 	int		number_i = static_cast<int>(number_f);
 	char	number_c = static_cast<char>(number_f);
 	double	number_d = static_cast<double>(number_f);
+	dezimal = "";
 	std::string tmp = str.erase(str.length());
 	std::string infinity_sign = "";
 	if (number_i < 32 || number_i > 126 || number_d != floor(number_d))
@@ -100,6 +105,7 @@ static void typeDouble(std::string str, std::string dezimal) {
 	int		number_i = static_cast<int>(number_d);
 	char	number_c = static_cast<char>(number_d);
 	float	number_f = static_cast<float>(number_d);
+	dezimal = "";
 	std::string infinity_sign = "";
 	if (number_i < 32 || number_i > 126 || number_d != floor(number_d))
 		std::cout 	<< "char: Non displayable" << std::endl;

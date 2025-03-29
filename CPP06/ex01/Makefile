@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kevin <kevin@student.42.fr>                +#+  +:+       +#+         #
+#    By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 19:03:52 by kevin             #+#    #+#              #
-#    Updated: 2025/03/14 20:53:45 by kevin            ###   ########.fr        #
+#    Updated: 2025/03/29 17:14:55 by kbrauer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-.c.o:
+.cpp.o:
 	c++ $(FLAGS) -c $< -o $(<:.cpp=.o)
 
 $(NAME): $(OBJS)

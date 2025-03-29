@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevin <kevin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 20:33:17 by kevin             #+#    #+#             */
-/*   Updated: 2025/03/14 20:58:13 by kevin            ###   ########.fr       */
+/*   Updated: 2025/03/29 17:16:04 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main() {
     std::cout << ptr << std::endl;
     std::cout << ptr->num << std::endl << std::endl;
 
-    uintptr_t x = Serializer::serialize(ptr);
+    __intptr_t x = Serializer::serialize(ptr);
     Data* ptr_new = Serializer::deserialze(x);
     
     std::cout << x << std::endl << std::endl;
