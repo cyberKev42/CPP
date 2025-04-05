@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 17:52:40 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/04/04 19:21:12 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/04/05 14:34:23 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <iostream>
-#include <iomanip>
 #include <fstream>
 #include <cstdlib>
 #include <map>

@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 18:05:26 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/04/05 13:56:06 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/04/05 14:54:17 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ BitcoinExchange::BitcoinExchange(std::string input_user, std::string input_data)
 	this->_input_data = input_data;
 }
 BitcoinExchange::BitcoinExchange(BitcoinExchange& original) {
+	this->_data = original._data;
 	this->_input_user = original._input_user;
 	this->_input_data = original._input_data;
 }
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& B) {
 	if (this != &B) {
+		this->_data = B._data;
 		this->_input_user = B._input_user;
 		this->_input_data = B._input_data;
 	}
