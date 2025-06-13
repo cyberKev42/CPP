@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:37:32 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/06/07 17:28:26 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/06/12 18:31:13 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,26 +109,22 @@ template <typename T> void PmergeMe::_sort_and_recurse(T& container, int pair_le
     bool is_odd = pair_units_nbr % 2 == 1;
 
     Iterator start = container.begin();
-    Iterator last = next(container.begin(), pair_level * (pair_units_nbr));
+    Iterator last = next(start, pair_level * pair_units_nbr);
     Iterator end = next(last, -(is_odd * pair_level));
 
     int jump = 2 * pair_level;
     for (Iterator it = start; it != end; std::advance(it, jump))
     {
         Iterator this_pair = next(it, pair_level - 1);
-        Iterator next_pair = next(it, pair_level * 2 - 1);
+        Iterator next_pair = next(it, (pair_level * 2) - 1);
         if (_comp(next_pair, this_pair))
-        {
             _swap_pair(this_pair, pair_level);
-        }
     }
     _merge_insertion_sort(container, pair_level * 2); // Recursive call
 }
 
 template <typename T> void PmergeMe::_initialize_chains(T& container, int pair_level, std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd, typename T::iterator end_it)
 {
-    // typedef typename T::iterator Iterator; // Removed unused typedef
-
     int pair_units_nbr = container.size() / pair_level;
 
     /* Initialize the main chain with the {b1, a1}. */
@@ -199,7 +195,6 @@ template <typename T> void PmergeMe::_copy_sorted_values_back(T& container, cons
     typedef typename T::iterator Iterator;
 
     std::vector<int> copy;
-    copy.reserve(container.size());
     for (typename std::vector<Iterator>::const_iterator it = main.begin(); it != main.end(); it++)
     {
         for (int i = 0; i < pair_level; i++)
@@ -235,7 +230,7 @@ template <typename T> void PmergeMe::_merge_insertion_sort(T& container, int pai
 
     bool is_odd = pair_units_nbr % 2 == 1;
 
-    // Calculate end iterator for the swapping phase
+    // last = one after last element (boundary), end_it = last element
     Iterator last = next(container.begin(), pair_level * (pair_units_nbr));
     Iterator end_it = next(last, -(is_odd * pair_level));
 
