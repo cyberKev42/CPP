@@ -6,24 +6,31 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:37:32 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/06/12 18:31:13 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:16:08 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-// Pmergeme::Pmergeme() {
-	
-// }
-// Pmergeme::Pmergeme(Pmergeme& original) {
-	
-// }
-// Pmergeme& Pmergeme::operator=(const Pmergeme& P) {
-	
-// }
-// Pmergeme::~Pmergeme() {
-	
-// }
+PmergeMe::PmergeMe() {
+}
+PmergeMe::PmergeMe(PmergeMe& original) {
+	for (std::vector<int>::iterator it = original._num_vec.begin(); it != original._num_vec.end(); it++) {
+		this->_num_vec.push_back(*it);
+	}
+	for (std::deque<int>::iterator it = original._num_deq.begin(); it != original._num_deq.end(); it++) {
+		this->_num_deq.push_back(*it);
+	}
+}
+PmergeMe& PmergeMe::operator=(const PmergeMe& P) {
+	if (this != &P) {
+		this->_num_vec = P._num_vec;
+		this->_num_deq = P._num_deq;
+	}
+	return *this;
+}
+PmergeMe::~PmergeMe() {
+}
 
 template <typename T> void PmergeMe::_add_num_to_container(T& container, char** argv) {
 	int i = 1;
@@ -33,19 +40,7 @@ template <typename T> void PmergeMe::_add_num_to_container(T& container, char** 
 	}
 }
 
-
-//#######################################
-
 int PmergeMe::nbr_of_comps = 0;
-
-PmergeMe::PmergeMe() {}
-PmergeMe::PmergeMe(const PmergeMe& original) { (void)original; }
-PmergeMe& PmergeMe::operator=(const PmergeMe& P)
-{
-    (void)P;
-    return *this;
-}
-PmergeMe::~PmergeMe() {}
 
 /* Gives an index of the nth Jacobsthal number, starting from 1.
  * round((pow(2, n) + pow(-1, n - 1)) / 3) means that it starts from 0.*/
@@ -75,177 +70,161 @@ void PmergeMe::print_deq() {
 	}
 }
 
-template <typename T> bool _comp(T lv, T rv) {
+template <typename T> bool compare(T lv, T rv) {
     PmergeMe::nbr_of_comps++;
     return *lv < *rv;
 }
 
-template <typename T> T next(T it, int steps)
+template <typename T> T move_iter(T it, int steps)
 {
     std::advance(it, steps);
     return it;
 }
 
-template <typename T> void PmergeMe::_swap_pair(T it, int pair_level)
+template <typename T> void PmergeMe::_swap_pair(T it, int pair_size)
 {
-    T start = next(it, -pair_level + 1);
-    T end = next(start, pair_level);
+    T start = move_iter(it, -pair_size + 1);
+    T end = move_iter(start, pair_size);
     while (start != end)
     {
-        std::iter_swap(start, next(start, pair_level));
+        std::iter_swap(start, move_iter(start, pair_size));
         start++;
     }
 }
 
-template <typename T> void PmergeMe::_sort_and_recurse(T& container, int pair_level)
+template <typename T> void PmergeMe::_sort_and_recurse(T& container, int pair_size)
 {
     typedef typename T::iterator Iterator;
 
-    int pair_units_nbr = container.size() / pair_level;
+    int nbr_of_pairs = container.size() / pair_size;
 
-    if (pair_units_nbr < 2)
+    if (nbr_of_pairs < 2)
         return;
 
-    bool is_odd = pair_units_nbr % 2 == 1;
+    bool is_odd = nbr_of_pairs % 2 == 1;
 
     Iterator start = container.begin();
-    Iterator last = next(start, pair_level * pair_units_nbr);
-    Iterator end = next(last, -(is_odd * pair_level));
+    Iterator last = move_iter(start, pair_size * nbr_of_pairs);
+    Iterator end = move_iter(last, -(is_odd * pair_size));
 
-    int jump = 2 * pair_level;
+    int jump = 2 * pair_size;
     for (Iterator it = start; it != end; std::advance(it, jump))
     {
-        Iterator this_pair = next(it, pair_level - 1);
-        Iterator next_pair = next(it, (pair_level * 2) - 1);
-        if (_comp(next_pair, this_pair))
-            _swap_pair(this_pair, pair_level);
+        Iterator this_pair = move_iter(it, pair_size - 1);
+        Iterator move_iter_pair = move_iter(it, (pair_size * 2) - 1);
+        if (compare(move_iter_pair, this_pair))
+            _swap_pair(this_pair, pair_size);
     }
-    _merge_insertion_sort(container, pair_level * 2); // Recursive call
+    _merge_insertion_sort(container, pair_size * 2); // Recursive call
 }
 
-template <typename T> void PmergeMe::_initialize_chains(T& container, int pair_level, std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd, typename T::iterator end_it)
+template <typename T> void PmergeMe::_fill_chains(T& container, int pair_size, std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd, typename T::iterator end)
 {
-    int pair_units_nbr = container.size() / pair_level;
+    int nbr_of_pairs = container.size() / pair_size;
 
     /* Initialize the main chain with the {b1, a1}. */
-    main.insert(main.end(), next(container.begin(), pair_level - 1));
-    main.insert(main.end(), next(container.begin(), pair_level * 2 - 1));
+    //main.insert(main.end(), move_iter(container.begin(), pair_size - 1));
+    main.push_back(move_iter(container.begin(), pair_size - 1));
+    main.push_back(move_iter(container.begin(), pair_size * 2 - 1));
 
     /* Insert the rest of a's into the main chain.
        Insert the rest of b's into the pend. */
-    for (int i = 4; i <= pair_units_nbr; i += 2)
+    for (int i = 4; i <= nbr_of_pairs; i += 2)
     {
-        pend.insert(pend.end(), next(container.begin(), pair_level * (i - 1) - 1));
-        main.insert(main.end(), next(container.begin(), pair_level * i - 1));
+        pend.push_back(move_iter(container.begin(), pair_size * (i - 1) - 1));
+        main.push_back(move_iter(container.begin(), pair_size * i - 1));
     }
 
     /* Insert an odd element to the pend, if there are any. */
     if (is_odd)
     {
-        pend.insert(pend.end(), next(end_it, pair_level - 1));
+        pend.push_back(move_iter(end, pair_size - 1));
     }
 }
 
-template <typename T> void PmergeMe::_insert_pend_elements(std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd) // Removed pair_level
+template <typename T> void PmergeMe::_insert_pend_into_main(std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd) // Removed pair_size
 {
     /* Insert the pend into the main in the order determined by the
        Jacobsthal numbers. */
-    int prev_jacobsthal = _jacobsthal_number(1);
+    int jacob_last = _jacobsthal_number(1);
     int inserted_numbers = 0;
     for (int k = 2;; k++)
     {
-        int curr_jacobsthal = _jacobsthal_number(k);
-        int jacobsthal_diff = curr_jacobsthal - prev_jacobsthal;
+        int jacob_now = _jacobsthal_number(k);
+        int jacob_diff = jacob_now - jacob_last;
 
-        if (jacobsthal_diff > static_cast<int>(pend.size()))
+        if (jacob_diff > static_cast<int>(pend.size()))
             break;
-        int nbr_of_times = jacobsthal_diff;
-        typename std::vector<typename T::iterator>::iterator pend_it = next(pend.begin(), jacobsthal_diff - 1);
-        typename std::vector<typename T::iterator>::iterator bound_it =
-            next(main.begin(), curr_jacobsthal + inserted_numbers);
-        while (nbr_of_times)
+        int inserts_to_do = jacob_diff;
+        typename std::vector<typename T::iterator>::iterator pend_it = move_iter(pend.begin(), jacob_diff - 1);
+        typename std::vector<typename T::iterator>::iterator bound_it = move_iter(main.begin(), jacob_now + inserted_numbers);
+        while (inserts_to_do)
         {
-            typename std::vector<typename T::iterator>::iterator idx =
-                std::upper_bound(main.begin(), bound_it, *pend_it, _comp<typename T::iterator>);
+            typename std::vector<typename T::iterator>::iterator idx = std::upper_bound(main.begin(), bound_it, *pend_it, compare<typename T::iterator>);
             typename std::vector<typename T::iterator>::iterator inserted = main.insert(idx, *pend_it);
-            nbr_of_times--;
+            inserts_to_do--;
             pend_it = pend.erase(pend_it);
             std::advance(pend_it, -1);
-            int offset = (inserted - main.begin()) == curr_jacobsthal + inserted_numbers;
-            bound_it = next(main.begin(), curr_jacobsthal + inserted_numbers - offset);
+            int offset = (inserted - main.begin()) == jacob_now + inserted_numbers;
+            bound_it = move_iter(main.begin(), jacob_now + inserted_numbers - offset);
         }
-        prev_jacobsthal = curr_jacobsthal;
-        inserted_numbers += jacobsthal_diff;
+        jacob_last = jacob_now;
+        inserted_numbers += jacob_diff;
     }
 
     /* Insert the remaining elements in the reversed order. */
     for (ssize_t i = pend.size() - 1; i >= 0; i--)
     {
-        typename std::vector<typename T::iterator>::iterator curr_pend = next(pend.begin(), i);
-        typename std::vector<typename T::iterator>::iterator curr_bound =
-            next(main.begin(), main.size() - pend.size() + i + is_odd);
-        typename std::vector<typename T::iterator>::iterator idx =
-            std::upper_bound(main.begin(), curr_bound, *curr_pend, _comp<typename T::iterator>);
-        main.insert(idx, *curr_pend);
+        typename std::vector<typename T::iterator>::iterator this_pend = move_iter(pend.begin(), i);
+        typename std::vector<typename T::iterator>::iterator this_bound = move_iter(main.begin(), main.size() - pend.size() + i + is_odd);
+        typename std::vector<typename T::iterator>::iterator idx = std::upper_bound(main.begin(), this_bound, *this_pend, compare<typename T::iterator>);
+        main.insert(idx, *this_pend);
     }
 }
 
-template <typename T> void PmergeMe::_copy_sorted_values_back(T& container, const std::vector<typename T::iterator>& main, int pair_level)
+template <typename T> void PmergeMe::_copy_values_to_container(T& container, const std::vector<typename T::iterator>& main, int pair_size)
 {
     typedef typename T::iterator Iterator;
 
-    std::vector<int> copy;
+    std::vector<int>tmp;
     for (typename std::vector<Iterator>::const_iterator it = main.begin(); it != main.end(); it++)
     {
-        for (int i = 0; i < pair_level; i++)
+        for (int i = 0; i < pair_size; i++)
         {
-            Iterator pair_start = *it;
-            std::advance(pair_start, -pair_level + i + 1);
-            copy.push_back(*pair_start); // Use push_back instead of insert(end(), ...)
+			Iterator pair_start = *it;
+			std::advance(pair_start, -pair_size + i + 1);
+			tmp.push_back(*pair_start);
         }
     }
 
     Iterator container_it = container.begin();
-    typename std::vector<int>::iterator copy_it = copy.begin();
-    while (copy_it != copy.end())
+    typename std::vector<int>::iterator tmp_it =tmp.begin();
+    while (tmp_it !=tmp.end())
     {
-        *container_it = *copy_it;
+        *container_it = *tmp_it;
         container_it++;
-        copy_it++;
+        tmp_it++;
     }
 }
 
 
-template <typename T> void PmergeMe::_merge_insertion_sort(T& container, int pair_level)
+template <typename T> void PmergeMe::_merge_insertion_sort(T& container, int pair_size)
 {
     typedef typename T::iterator Iterator;
+	std::vector<Iterator> main;
+	std::vector<Iterator> pend;
 
-    int pair_units_nbr = container.size() / pair_level;
-
-    std::cout << "pair_level: " << pair_level << std::endl;
-
-    if (pair_units_nbr < 2)
+    int nbr_of_pairs = container.size() / pair_size;
+    if (nbr_of_pairs < 2)
         return;
-    std::cout << "pair_units_nbr: " << pair_units_nbr << std::endl << std::endl;
-
-    bool is_odd = pair_units_nbr % 2 == 1;
-
-    // last = one after last element (boundary), end_it = last element
-    Iterator last = next(container.begin(), pair_level * (pair_units_nbr));
-    Iterator end_it = next(last, -(is_odd * pair_level));
-
-    // Phase 1: Sort pairs and recurse on the larger elements
-    _sort_and_recurse(container, pair_level);
-
-    // Phase 2: Initialize main and pend chains with iterators
-    std::vector<Iterator> main;
-    std::vector<Iterator> pend;
-    _initialize_chains(container, pair_level, main, pend, is_odd, end_it);
-
-    // Phase 3 & 4: Insert pend elements into main (Jacobsthal and remaining)
-    _insert_pend_elements<T>(main, pend, is_odd); // Explicitly specify template argument <T>
-
-    // Phase 5: Copy sorted values back to the original container
-    _copy_sorted_values_back(container, main, pair_level);
+    bool is_odd = nbr_of_pairs % 2 == 1;
+	
+    // last = one after last element (boundary), end = last element
+    Iterator last = move_iter(container.begin(), nbr_of_pairs * pair_size);
+    Iterator end = move_iter(last, -(is_odd * pair_size));
+    _sort_and_recurse(container, pair_size);
+    _fill_chains(container, pair_size, main, pend, is_odd, end);
+    _insert_pend_into_main<T>(main, pend, is_odd);
+    _copy_values_to_container(container, main, pair_size);
 }
 

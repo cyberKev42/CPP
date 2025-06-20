@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:35:29 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/06/07 17:17:53 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:16:09 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ private:
 	std::vector<int>	_num_vec;
 	std::deque<int> 	_num_deq;
 	template <typename T> void _add_num_to_container(T& container, char** argv);
-	template <typename T> void _merge_insertion_sort(T& container, int pair_level);
-	template <typename T> void _swap_pair(T it, int pair_level);
-	template <typename T> void _sort_and_recurse(T& container, int pair_level);
-	template <typename T> void _initialize_chains(T& container, int pair_level, std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd, typename T::iterator end_it);
-	template <typename T> void _insert_pend_elements(std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd);
-	template <typename T> void _copy_sorted_values_back(T& container, const std::vector<typename T::iterator>& main, int pair_level);
+	template <typename T> void _merge_insertion_sort(T& container, int pair_size);
+	template <typename T> void _swap_pair(T it, int pair_size);
+	template <typename T> void _sort_and_recurse(T& container, int pair_size);
+	template <typename T> void _fill_chains(T& container, int pair_size, std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd, typename T::iterator end);
+	template <typename T> void _insert_pend_into_main(std::vector<typename T::iterator>& main, std::vector<typename T::iterator>& pend, bool is_odd);
+	template <typename T> void _copy_values_to_container(T& container, const std::vector<typename T::iterator>& main, int pair_size);
 public:
 	PmergeMe();
-	PmergeMe(const PmergeMe& original);
+	PmergeMe(PmergeMe& original);
 	PmergeMe& operator=(const PmergeMe& P);
 	~PmergeMe();
 	void sort_vec(char** argv);
