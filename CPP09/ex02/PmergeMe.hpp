@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:35:29 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/06/20 18:16:09 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/06/26 17:25:36 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ public:
 	PmergeMe(PmergeMe& original);
 	PmergeMe& operator=(const PmergeMe& P);
 	~PmergeMe();
-	void sort_vec(char** argv);
-	void sort_deq(char** argv);
-	void print_vec();
-	void print_deq();
-	static int nbr_of_comps;
+	static int		comparisons;
+	void	sort_vec(char** argv);
+	void	sort_deq(char** argv);
+	void	print_vec();
+	void	print_deq();
 };
 
 /*

@@ -6,7 +6,7 @@
 /*   By: kbrauer <kbrauer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:37:47 by kbrauer           #+#    #+#             */
-/*   Updated: 2025/06/07 17:21:00 by kbrauer          ###   ########.fr       */
+/*   Updated: 2025/06/26 18:57:55 by kbrauer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int main(int argc, char **argv) {
 
 	clock_t start = clock();
 	MergeSort.sort_vec(argv);
-    double time_vec = static_cast<double>(clock() - start) / CLOCKS_PER_SEC;
+    double time_vec = static_cast<double>(clock() - start) / CLOCKS_PER_SEC * 1000;
 
 	start = clock();
 	MergeSort.sort_deq(argv);
-    double time_deq = static_cast<double>(clock() - start) / CLOCKS_PER_SEC;
+    double time_deq = static_cast<double>(clock() - start) / CLOCKS_PER_SEC * 1000;
 
 	std::cout << "Before: ";
 	for (int i = 1; i < argc; i++)
@@ -59,9 +59,11 @@ int main(int argc, char **argv) {
 	MergeSort.print_vec();
 	std::cout << std::endl;
 	std::cout 	<< "Time to process a range of " << argc - 1
-				<< " elements with std::vector : " << std::setprecision(6) << time_vec << " us" << std::endl
+				<< " elements with std::vector : " << std::setprecision(6) << time_vec << " ms" << std::endl
+				<< "Number of comparisons: " << MergeSort.comparisons << std::endl
 				<< "Time to process a range of " << argc - 1
-				<< " elements with std::deque : " << time_deq << " us" << std::endl;
+				<< " elements with std::deque : " << time_deq << " ms" << std::endl
+				<< "Number of comparisons: " << MergeSort.comparisons << std::endl;
 }
 
 
